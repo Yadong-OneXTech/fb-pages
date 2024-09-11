@@ -73,6 +73,8 @@ const FacebookPageSelector = () => {
         }, { scope: 'pages_show_list,pages_read_engagement' });
       });
 
+      console.log('response: ', response)
+
       // Fetch user's Facebook pages
       const pagesResponse: Array<{ id: string; name: string }> = await new Promise((resolve) => {
         window.FB.api('/me/accounts', (apiResponse: any) => {
