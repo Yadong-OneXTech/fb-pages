@@ -70,7 +70,7 @@ const FacebookPageSelector = () => {
           } else {
             reject("User cancelled login or did not fully authorize.");
           }
-        }, { scope: 'pages_show_list,pages_read_engagement' });
+        }, { scope: 'pages_show_list,pages_read_engagement,instagram_basic,whatsapp_business_management,instagram_manage_messages,pages_manage_metadata,whatsapp_business_messaging' });
       });
 
       console.log('response: ', response)
