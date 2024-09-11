@@ -27,7 +27,7 @@ const FacebookPageSelector = () => {
           appId: '379599191770485', // Replace with your Facebook App ID
           cookie: true,
           xfbml: true,
-          version: 'v12.0'
+          version: 'v20.0'
         });
       };
 
