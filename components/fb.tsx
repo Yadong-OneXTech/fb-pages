@@ -76,6 +76,7 @@ const FacebookPageSelector = () => {
       // Fetch user's Facebook pages
       const pagesResponse: Array<{ id: string; name: string }> = await new Promise((resolve) => {
         window.FB.api('/me/accounts', (apiResponse: any) => {
+          console.log('pages: ', apiResponse)
           resolve(apiResponse.data);
         });
       });
