@@ -70,10 +70,26 @@ const FacebookPageSelector = () => {
           } else {
             reject("User cancelled login or did not fully authorize.");
           }
-        }, { scope: 'pages_show_list,pages_read_engagement,instagram_basic,whatsapp_business_management,instagram_manage_messages,pages_manage_metadata,whatsapp_business_messaging' });
+        }, { 
+          redirectUri: 'https://admin-staging.workmetric.com',
+          scope: 'pages_show_list,pages_read_engagement,instagram_basic,whatsapp_business_management,instagram_manage_messages,pages_manage_metadata,whatsapp_business_messaging' });
       });
 
       console.log('response: ', response)
+
+      // Fetch user's Business
+      // const businessResponse = await new Promise((resolve) => {
+      //   window.FB.api('/me', (apiResponse: any) => {
+      //     console.log('business: ', apiResponse)
+      //     resolve(apiResponse.data)
+      //   })
+      // })
+      // const businessResponse1 = await new Promise((resolve) => {
+      //   window.FB.api('/me', (apiResponse: any) => {
+      //     console.log('business: ', apiResponse)
+      //     resolve(apiResponse.data)
+      //   })
+      // })
 
       // Fetch user's Facebook pages
       const pagesResponse: Array<{ id: string; name: string }> = await new Promise((resolve) => {
@@ -95,6 +111,8 @@ const FacebookPageSelector = () => {
 
   return (
     <div>
+      <a href={`https://www.facebook.com/v20.0/dialog/oauth?
+  client_id=379599191770485`}>Login dialog</a>
       <button onClick={handleFacebookLogin}>Login with Facebook</button>
       {pages.length > 0 && (
         <div>
