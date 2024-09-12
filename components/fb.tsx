@@ -112,7 +112,7 @@ const FacebookPageSelector = () => {
   return (
     <div>
       <a href={`https://www.facebook.com/v20.0/dialog/oauth?
-  client_id=379599191770485`}>Login dialog</a>
+  client_id=379599191770485&redirect_uri=https://admin-staging.workmetric.com&state={"{st=state123abc,ds=123456789}"}`}>Login dialog</a>
       <button onClick={handleFacebookLogin}>Login with Facebook</button>
       {pages.length > 0 && (
         <div>
