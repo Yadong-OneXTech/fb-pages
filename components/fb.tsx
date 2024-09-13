@@ -100,6 +100,16 @@ const FacebookPageSelector = () => {
       });
 
       setPages(pagesResponse);
+
+      const fetchingBusinessResponse = await new Promise(
+        (resolve, reject) => {
+          window.FB.api('/me/businesses', 'GET', {}, (response: any) => {
+            // Insert your code here
+            console.log(response)
+            resolve(response)
+          })
+        }
+      )
     } catch (error) {
       console.error("Facebook login error:", error);
     }
