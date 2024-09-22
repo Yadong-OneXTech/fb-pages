@@ -1,6 +1,55 @@
+'use client'
+
 import Script from "next/script"
+import { useEffect } from "react"
 
 export const FBLoginButton = () => {
+
+
+  useEffect(() => {
+    window.addEventListener('message', (event) => {
+      const isValidOrigin = [
+        'https://www.facebook.com',
+        'https://web.facebook.com',
+      ].includes(event.origin)
+
+      if (!isValidOrigin) return
+
+      try {
+        console.log('event.data: ', event.data)
+        const data = JSON.parse(event.data)
+        if (data.type !== 'WA_EMBEDDED_SIGNUP') return
+
+        // if user finishes the Embedded Signup flow
+        switch (data.event) {
+          case 'FINISH':
+            const { phone_number_id, waba_id } = data.data
+
+            localStorage.setItem(
+              'wa_account',
+              JSON.stringify({ phone_number_id, waba_id })
+            )
+            break
+
+          case 'CANCEL':
+            const { current_step } = data.data
+            console.warn('Cancel at ', current_step)
+            break
+
+          case 'ERROR':
+            const { error_message } = data.data
+            console.error('error ', error_message)
+            break
+
+          default:
+            console.log('Unknown event')
+            break
+        }
+      } catch {
+        console.log('Non JSON Responses', event.data)
+      }
+    })
+  }, [])
     const handleLogin = async () => {
         try {
             // @ts-expect-error todo
