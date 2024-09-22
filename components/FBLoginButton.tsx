@@ -33,6 +33,14 @@ export const FBLoginButton = () => {
         
               const { accessToken, expiresIn, code } = response?.authResponse || {}
               console.log(accessToken, expiresIn, code)
+              // Fetch user's Facebook pages
+          const pagesResponse: Array<{ id: string; name: string }> =
+          await new Promise((resolve) => {
+            window.FB.api('/me/accounts', (apiResponse: { data: Array<{ id: string; name: string }> }) => {
+              resolve(apiResponse.data)
+            })
+          })
+          console.log(pagesResponse)
         } catch (error) {
             console.error(error)
         }
