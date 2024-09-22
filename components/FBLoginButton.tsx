@@ -16,7 +16,7 @@ export const FBLoginButton = () => {
       if (!isValidOrigin) return
 
       try {
-        console.log('event.data: ', event.data)
+        console.log('event: ', event)
         const data = JSON.parse(event.data)
         if (data.type !== 'WA_EMBEDDED_SIGNUP') return
 
