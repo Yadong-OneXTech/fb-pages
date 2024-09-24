@@ -67,14 +67,15 @@ export const FBLoginButton = () => {
                       }
                     },
                     {
-                          config_id: '427148496608877', // configuration ID goes here
-                          response_type: 'code', // must be set to 'code' for System User access token
-                          override_default_response_type: true, // when true, any response types passed in the "response_type" will take precedence over the default types
-                          extras: {
-                            setup: {},
-                            featureType: '',
-                            sessionInfoVersion: '2',
-                          },
+                          // config_id: '427148496608877', // configuration ID goes here
+                          // response_type: 'code', // must be set to 'code' for System User access token
+                          // override_default_response_type: true, // when true, any response types passed in the "response_type" will take precedence over the default types
+                          // extras: {
+                          //   setup: {},
+                          //   featureType: '',
+                          //   sessionInfoVersion: '2',
+                          // },
+                          scope: 'pages_show_list,pages_read_engagement,instagram_basic,whatsapp_business_management,instagram_manage_messages,pages_manage_metadata,whatsapp_business_messaging'
                         }
                   )
                 }
@@ -85,7 +86,10 @@ export const FBLoginButton = () => {
               // Fetch user's Facebook pages
           const pagesResponse: Array<{ id: string; name: string }> =
           await new Promise((resolve) => {
-            window.FB.api('/me/accounts', (apiResponse: { data: Array<{ id: string; name: string }> }) => {
+            window.FB.api('/me/accounts', {
+              fields:
+                'access_token,instagram_business_account{username},name',
+            }, (apiResponse: { data: Array<{ id: string; name: string }> }) => {
               resolve(apiResponse.data)
             })
           })
