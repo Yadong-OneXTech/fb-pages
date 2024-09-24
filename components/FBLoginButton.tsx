@@ -80,6 +80,7 @@ export const FBLoginButton = () => {
                   )
                 }
               )
+              console.log('response: ', response)
         
               const { accessToken, expiresIn, code } = response?.authResponse || {}
               console.log(accessToken, expiresIn, code)
