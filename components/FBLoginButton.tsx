@@ -109,7 +109,9 @@ export const FBLoginButton = () => {
           window.fbAsyncInit = function () {
             // @ts-expect-error todo
             FB.init({
-              appId: '379599191770485',
+              // appId: '379599191770485',
+              // test
+              appId: '770838478383509',
               cookie: true,
               xfbml: true,
               version: 'v20.0',
